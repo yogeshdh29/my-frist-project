@@ -14,7 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::view('contact', 'contact');
+//Route::view('contact', 'contact');
 Route::view('about', 'about');
 /* 
 Model - 
@@ -77,3 +77,11 @@ php artisan make:controller -r -m Customer
 Creates all restful methods for us with Route Model binding as well.
 */
 //Route::resource('customers', 'CustomersController');
+
+
+/* 
+Mailables - Template ready for you to start sending formatted emails
+*/
+Route::get('contact', 'ContactFormController@create');
+Route::post('contact', 'ContactFormController@store');
+
