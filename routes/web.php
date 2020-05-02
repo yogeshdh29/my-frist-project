@@ -29,16 +29,3 @@ Model -
 php artisan make:model Customers -m 
 Create a migrate for that model to hold the data as well.
 */
-Route::get('customers', 'CustomersController@list');
-Route::get('customers/create', 'CustomersController@create');
-
-
-Route::get('getState','CustomersController@getStates');
-Route::get('/getCity/{id}','CustomersController@getCity');
-
-
-Route::post('customers', 'CustomersController@store');
-
-Route::get('customers/create', 'CandidatesController@create');
-Route::post('customers', 'CandidatesController@store');
-
