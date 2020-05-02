@@ -68,3 +68,12 @@ public function getActiveAttribute($attribute) {
 
 getColumnNameAttribute($attribute)
 */
+Route::delete('customers/{customer}', 'CustomersController@destroy');
+
+
+/* 
+RESTful controller 
+php artisan make:controller -r -m Customer
+Creates all restful methods for us with Route Model binding as well.
+*/
+//Route::resource('customers', 'CustomersController');
