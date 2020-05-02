@@ -8,24 +8,11 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
-    <title></title>
+    <title>@yield('title','Laravel')</title>
   </head>
   <body>
-<ul class="nav">
-  <li class="nav-item">
-    <a class="nav-link" href="/">Home</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="/contact">Contact</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="/about">About</a>
-  </li>
-  <li class="nav-item"> 
-    <a class="nav-link disabled" href="#">Disabled</a>
-  </li>
-</ul>
 <div class="container">
+  @include('nav')
 @yield('content')
 </div>
     <!-- Optional JavaScript -->
