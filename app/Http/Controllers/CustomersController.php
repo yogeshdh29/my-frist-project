@@ -18,7 +18,15 @@ class CustomersController extends Controller
 
     public function store() {
 
-    	$customer = new Customer();
+    	$data = request()->validate([
+    		'name' => 'required',
+    		'email' => 'required|email',
+    		'active' => '',
+    		'company_id' => 'required',
+    	]);
 
+    	Customer::create($data);
+    	
+    	return back();
     }
 }

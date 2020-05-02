@@ -44,7 +44,31 @@
 	</div>
 </div>
 
-@foreach($customers as $customer)
-	<li>{{ $customer->name }}</li>
-@endforeach
+
+<div class="row">
+	<div class="col-12">
+		@foreach($customers as $customer)
+		<ul>			
+			<li>{{ $customer->name }} </li>
+			<li>{{ $customer->email }} </li>
+			<li>{{ $customer->active }} </li>
+			<li>{{ $customer->company->name}}</li>
+		</ul>
+		@endforeach
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-12">
+		@foreach($companies as $company)
+			<li>{{ $company->name }} </li>
+			
+			<ul>
+			@foreach($company->customers as $customer)
+				<li>{{ $customer->name }} </li>
+			@endforeach
+			</ul>
+		@endforeach
+	</div>
+</div>
 @endsection('content')
