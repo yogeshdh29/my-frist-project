@@ -81,7 +81,31 @@ Creates all restful methods for us with Route Model binding as well.
 
 /* 
 Mailables - Template ready for you to start sending formatted emails
+php artisan make:mail ContactFormMail -m=emails.contact.contact-form 
+Markdown will actually create a view and tak a look in your browser
+		store() {
+    		Mail::to('test@test.com')->send(new ContactFormMail($data));
+
+    		session()->flash('message', 'thank you'); //thank you message after mail sent
+
+    		return redirect('contact');
+    	}
+Pass the user form data to the ContactFormMail.php file created after the php artisan make:mail ContactFormMail.php file    	
+App/Mail/ContactFormMail.php
+
+public $data;
+
+__construct($data)
+
+    public function build()
+    {
+        return $this->markdown('emails.contact.contact-form');
+    }
+The $data can be used in the view - emails/contact/contact-form.blade.php where template of mail is present. 
+
 */
 Route::get('contact', 'ContactFormController@create');
 Route::post('contact', 'ContactFormController@store');
+
+
 

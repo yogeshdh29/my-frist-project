@@ -13,7 +13,14 @@
   <body>
 <div class="container">
   @include('nav')
-@yield('content')
+
+  @if(session()->has('message'))
+  <div class="alert alert-success" role="alert">
+    <strong>Success</strong> {{ session()->get('message') }}
+  </div>
+  @endif
+
+  @yield('content')
 </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -1,6 +1,10 @@
 @extends('layout') 
 @section('content')
+
+	@if(! session()->has('message'))
+
     <h1>Contact Us</h1>
+	
 
     <form action="/contact" method="POST">
     @csrf	
@@ -25,5 +29,6 @@
 	</div>
 
 	<button type="submit" class="btn btn-info">Contact</button>
-	</form>	    
+	</form>
+	@endif	    
 @endsection
