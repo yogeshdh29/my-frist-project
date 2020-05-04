@@ -235,6 +235,28 @@ refer the create_companies_table migration file for table columns
         'ColumnName' => $faker->name,
         'ColumnName' => $faker->phoneNumber,
     ];
+For primary key FK relation - Import Model instad of $faker
+        'company_id' => factory(\App\Company::class)->create(),
+
+
+At times after migrate:fresh all the data is lost from the tables What if we want to have fake data in tables after fresh migration
+
+/database/seeds/DatabaseSeeder.php
+This has a run() {
+    $this->call(UsersTableSeeder::class);
+    $this->call(CompaniesTableSeeder::class);
+} which calls the seeder files
+To create seeder files
+php artisan make:seeder UsersTableSeeder
+    run() { 
+        factory(\App\User::class, 10)->create();
+    }
+php artisan make:seeder CompaniesTableSeeder
+    run() { 
+        factory(\App\Company::class, 10)->create();
+    }
+
+
 */
 
 
