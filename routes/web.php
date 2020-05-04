@@ -81,7 +81,7 @@ Creates all restful methods for us with Route Model binding as well.
 
 /* 
 Mailables - Template ready for you to start sending formatted emails
-php artisan make:mail ContactFormMail -m=emails.contact.contact-form 
+php artisan make:mail ContactFormMail -m=emails.contact.contact-form  
 Markdown will actually create a view and tak a look in your browser
 		store() {
     		Mail::to('test@test.com')->send(new ContactFormMail($data));
@@ -160,4 +160,55 @@ php artisan route:list
 		<form action="{{ route('customers.update',['*customer*' => $customer]) }}" method="POST" class="">
 Route::patch('*customers*'/{customer}', 'CustomersController@update')->name('customers.update');
 
+*/
+
+/* 
+Events - Something happened. When something happens, an event has occured. At that point we will have list of items that our application should respond with.
+User Registration - 1. Welcome Email 
+					2. Subscribe to newsletter
+					3. Slack NOtifiy
+All this can be done at Controller level and then can be clubbed inside an event.
+
+    	$customer = Customer::create($this->validateRequest());
+	
+        Mail::to($customer->email)->send(new WelcomeNewUserMail());
+
+        dump("Registed to newsletter");
+
+        dump("Slack message here");
+
+        event(new NewCustomerHasRegisteredEvent($customer));
+        php artisan make:event NewCustomerHasRegisteredEvent
+        App/Event/NewCustomerHasRegisteredEvent.php make $customer public
+
+        Make a Listener
+        php artisan make:listener WelcomeNewCustomerListener
+        App/Listener/WelcomeNewCustomerListener
+
+        public function handle($event) {
+        	//Customer can be accessed because the event has $customer 
+	        Mail::to($event->customer->email)->send(new WelcomeNewUserMail());	
+        }
+All the Events and Listeners are now standalone and are not talking to each other. 
+A connection needs to be formed so that they talk to each other. 
+Service Provider - Connect functionality in our app.
+App/Provider/EventServiceProvider         
+
+    protected $listen = [
+        Registered::class => [
+            SendEmailVerificationNotification::class,
+        ],
+    ];
+Need to connect each event with listener
+
+Automatic Way - Come to ServiceProvider and give it names that we want to make
+
+    protected $listen = [
+        \App\Events\NewCustomerHasRegisteredEvent::class => [
+            \App\Listeners\WelcomeNewCustomerListener::class,
+            \App\Listeners\RegisterCustomerToNewsletter::class,
+            \App\Listeners\NotifyAdminViaSlack::class,
+        ],
+    ];
+php artisan event:generate
 */
