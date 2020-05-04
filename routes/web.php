@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 //Route::view('contact', 'contact');
-Route::view('about', 'about');
+Route::view('about', 'about')->middleware('test');
 /* 
 Model - 
 1. Represents a single row in the database
@@ -126,5 +126,16 @@ __construct() {
 	$this->middleware('auth');
 	$this->middleware('auth')->only/except(['index','create']);	
 }
+
+Custom Middleware
+1. Create - php artisan make:middleware TestMiddleware
+2. Register - If we want to use the middleware, we have to register. App\Http\Kernel.php
+	i. Global Middleware - Run at every single HTTP request coming to application
+		protected $middleware = [ 
+
+		];
+	ii. Route - web.php or api.php. Applicable to all routes in web.php
+	iii. RouteMiddleware - Specific routes in web.php
+3. Use 
 */
 
