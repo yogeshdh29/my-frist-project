@@ -33,4 +33,5 @@ class ContactFormMail extends Mailable
     {
         return $this->markdown('emails.contact.contact-form');
     }
+    
 }
