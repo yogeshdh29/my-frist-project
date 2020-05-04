@@ -9,6 +9,9 @@ use App\Company;
 class CustomersController extends Controller
 {
     //
+    public function __construct() {
+        $this->middleware('auth');
+    }
     public function index() {
     	$customers = Customer::all();
     	$companies = Company::all();

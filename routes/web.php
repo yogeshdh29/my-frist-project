@@ -107,5 +107,24 @@ The $data can be used in the view - emails/contact/contact-form.blade.php where 
 Route::get('contact', 'ContactFormController@create');
 Route::post('contact', 'ContactFormController@store');
 
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
 
+/* 
+A middleware stands in the middle. In middle of what? 
+It stands in between a request and a response. It does that by executing a certain code. The code with either give it a green light or red light.
+If middleware gives a greenlight it will execute a certain code and move on to the next middleware. 
+If redlight - Execute some failsafe code.
+
+2 Ways to apply a middleware 
+1. Route level
+Route::get('contact', 'ContactFormController@create')->middleware('auth');
+
+2. Controller level 
+
+__construct() {
+	$this->middleware('auth');
+	$this->middleware('auth')->only/except(['index','create']);	
+}
+*/
 
