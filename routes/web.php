@@ -211,4 +211,30 @@ Automatic Way - Come to ServiceProvider and give it names that we want to make
         ],
     ];
 php artisan event:generate
+
+Why does user needs to be made to wait till all events are executed like image resizing. 
+We can use Queus so that application take its own time to execute.  
+
+implements ShouldQueue
+
+For every Queue a database entry is made and job is put in a queue.For every entry there needs to be something to process theq queue. In Dev we can start processing the Queue
+
+php artisan queue:work 
+
+Automate the queue with "&" and store the logs at 
+php artisan queue:work > storage/logs/jobs.log &
+
 */
+/* 
+Generate Fake Data for a table
+php artisan make:factory CompanyFactory -m Company
+
+/database/CompanyFactory.php
+refer the create_companies_table migration file for table columns 
+    return [
+        'ColumnName' => $faker->name,
+        'ColumnName' => $faker->phoneNumber,
+    ];
+*/
+
+
