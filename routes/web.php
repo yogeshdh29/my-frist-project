@@ -42,7 +42,7 @@ public function show(Customer $"customer") {
 
 Route::get('customers/{customer}', 'CustomersController@show');
 Route::get('customers/{customer}/edit', 'CustomersController@edit');
-Route::patch('customers/{customer}', 'CustomersController@update');
+Route::patch('customers/{customer}', 'CustomersController@update')->name('customers.update');
 
 /*
 Eloquent is a Database ORM that Laravel uses behind the scenes. Eloquent is able to handle many different drivers of databases. 
@@ -105,7 +105,7 @@ The $data can be used in the view - emails/contact/contact-form.blade.php where 
 
 */
 Route::get('contact', 'ContactFormController@create');
-Route::post('contact', 'ContactFormController@store');
+Route::post('contact', 'ContactFormController@store')->name('contact.store');
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
@@ -139,3 +139,25 @@ Custom Middleware
 3. Use 
 */
 
+/* 
+URL Helpers - 
+    <form action="/contact" method="POST">
+We have the /contact address in the create.blade.php file which points to the route in web.php
+Route::post('/contact', 'ContactsController@show');
+
+What if for some reasons the /contact -> /contact-us
+    <form action="/contact" method="POST">
+We will have to make this change in all the forms.
+
+Named routes - Assign names to all of our routes
+Route::post('/contact', 'ContactsController@store')->name('contact.store');
+
+    <form action="{{ route('contact.store') }}" method="POST">
+
+If we use Route::resource('customers','CustomersController'); Laravel names all the routes for us automatically
+php artisan route:list
+
+		<form action="{{ route('customers.update',['*customer*' => $customer]) }}" method="POST" class="">
+Route::patch('*customers*'/{customer}', 'CustomersController@update')->name('customers.update');
+
+*/

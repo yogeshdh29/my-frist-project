@@ -11,7 +11,7 @@
 </div>
 <div class="row">
 	<div class="col-12">
-		<form action="/customers/{{ $customer->id }}" method="POST" class="pb-5">
+		<form action="{{ route('customers.update',['customer' => $customer]) }}" method="POST" class="pb-5">
 			@method('PATCH')
 			@include('customers.form')			
 			<button type="submit" class="btn btn-info">Edit Customers</button>			
