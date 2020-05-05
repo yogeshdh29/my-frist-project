@@ -258,4 +258,18 @@ php artisan make:seeder CompaniesTableSeeder
 */
 /* 
 php artisan storage:link - Create a symbolic link from "public/storage" to "storage/app/public"
+composer require intervention/image
+        $image = Image::make(public_path('storage/' . $customer->image))->crop(300, 300);
+
+*/
+
+/*
+Laravel Telescope -  
+*/
+/* 
+Lazy Loading(N+1 Problem) - Customers::all();
+Since customer company_id reference to the Companies table. It will fire select * from company where id = 1 and individual select query  for each id.
+
+Eager Loading - Customer::with('company')->get();
+Instead of select * for companies, Laravel will do Select * where IN();
 */
