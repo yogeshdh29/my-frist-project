@@ -255,8 +255,7 @@ php artisan make:seeder CompaniesTableSeeder
     run() { 
         factory(\App\Company::class, 10)->create();
     }
-
-
 */
-
-
+/* 
+php artisan storage:link - Create a symbolic link from "public/storage" to "storage/app/public"
+*/

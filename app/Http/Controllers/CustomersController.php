@@ -12,65 +12,96 @@ use App\Events\NewCustomerHasRegisteredEvent;
 class CustomersController extends Controller
 {
     //
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('auth');
     }
-    public function index() {
-    	$customers = Customer::all();
-    	$companies = Company::all();
+    public function index()
+    {
+        $customers = Customer::all();
+        $companies = Company::all();
 
-    	return view('customers.index', compact('customers','companies'));
+        return view('customers.index', compact('customers', 'companies'));
     }
 
-    public function create() {
-    	$customers = Customer::all();
-    	$companies = Company::all();
-    	$customer = new Customer();
+    public function create()
+    {
+        $customers = Customer::all();
+        $companies = Company::all();
+        $customer = new Customer();
 
-    	return view('customers.create',compact('customers','companies','customer'));
+        return view('customers.create', compact('customers', 'companies', 'customer'));
     }
 
-    private function validateRequest() {
+    private function validateRequest()
+    {
 
-    	return request()->validate([
-    		'name' => 'required',
-    		'email' => 'required|email',
-    		'active' => 'required',
-    		'company_id' => 'required',    		
-    	]);
+        return tap(request()->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'active' => 'required',
+            'company_id' => 'required',
+            'image' => 'required|image'
+
+        ]), function () {
+
+            if (request()->hasFile('image')) {
+                request()->validate([
+                    'image' => 'file|image|max:5000',
+                ]);
+            }
+        });
     }
 
-    public function show(Customer $customer) {
+    public function show(Customer $customer)
+    {
 
-//    	$customer = Customer::where('id', $customer)->firstOrFail();
-    	return view('customers.show',compact('customer'));
+        //    	$customer = Customer::where('id', $customer)->firstOrFail();
+        return view('customers.show', compact('customer'));
     }
 
-    public function edit(Customer $customer) {
-    	$companies = Company::all();
+    public function edit(Customer $customer)
+    {
+        $companies = Company::all();
 
-    	return view('customers.edit', compact('customer','companies'));
+        return view('customers.edit', compact('customer', 'companies'));
     }
 
-    public function update(Customer $customer) {
+    public function store()
+    {
 
-    	$customer->update($this->validateRequest());
-    	return redirect('customers/'. $customer->id);    	
-    }
+        $customer = Customer::create($this->validateRequest());
 
-    public function store() {
-
-    	$customer = Customer::create($this->validateRequest());
+        $this->storeImage($customer);
 
         event(new NewCustomerHasRegisteredEvent($customer));
 
-//   	return redirect('customers');
+        //   	return redirect('customers');
     }
 
-    public function destroy(Customer $customer) {
+    public function update(Customer $customer)
+    {
 
-    	$customer->delete();
+        $customer->update($this->validateRequest());
+        $this->storeImage($customer);
 
-    	return redirect('customers');
+        return redirect('customers/' . $customer->id);
+    }
+
+    public function destroy(Customer $customer)
+    {
+
+        $customer->delete();
+
+        return redirect('customers');
+    }
+
+    public function storeImage($customer)
+    {
+        if (request()->has('image')) {
+            $customer->update([
+                'image' => request()->image->store('uploads', 'public'),
+            ]);
+        }
     }
 }
