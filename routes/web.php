@@ -258,4 +258,5 @@ php artisan make:seeder CompaniesTableSeeder
 */
 /* 
 php artisan storage:link - Create a symbolic link from "public/storage" to "storage/app/public"
+After Git old commit
 */
