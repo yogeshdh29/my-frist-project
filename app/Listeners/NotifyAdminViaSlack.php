@@ -18,6 +18,6 @@ class NotifyAdminViaSlack
     public function handle(NewCustomerHasRegisteredEvent $event)
     {
         //
-        dump("Slack message here");        
+        //dump("Slack message here");        
     }
 }
