@@ -21,7 +21,11 @@
                       </li>
                       <li class="nav-item"> 
                         <a class="nav-link" href="/customers">Customers</a>
-                      </li>    
+                      </li>
+                      <li class="nav-item"> 
+                        <a class="nav-link" href="/customers">Customers II</a>
+                      </li>
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->
