@@ -20,6 +20,7 @@ class CustomersController extends Controller
     {
 //        $customers = Customer::all();
 //        $customers = Customer::with('company')->get();
+        
         $customers = Customer::with('company')->paginate(5);
         
         return view('customers.index', compact('customers'));

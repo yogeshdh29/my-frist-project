@@ -39,7 +39,7 @@
 
 		@cannot('view', $customer)
 			{{ $customer->name }}
-		@endcan
+ 		@endcan
 	</div>		
 	<div class="col-2">{{ $customer->email }}</div>
 	<div class="col-2" align="center">{{ $customer->active }}</div>
