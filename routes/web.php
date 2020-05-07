@@ -40,7 +40,7 @@ public function show(Customer $"customer") {
 }
 */
 
-Route::get('customers/{customer}', 'CustomersController@show')->middleware('can:view, customer');
+Route::get('customers/{customer}', 'CustomersController@show')->middleware('can:view,customer');
 //Route::get('customers/{customer}', 'CustomersController@show');
 
 Route::get('customers/{customer}/edit', 'CustomersController@edit');
@@ -292,8 +292,11 @@ In store() {
 }
 Will return forbidden if not authorized
 
+In view to restrict the links - 
+@can('CustomerPolict_method', Customer::class); - When method in controller does not accept any parameter
+@can('view', $customer)
+
 Policy at Middleware 
 Route::get('customers/{customer}', 'CustomersController@show')->middleware('can:view, customer');
-
 */
 
