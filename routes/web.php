@@ -40,7 +40,9 @@ public function show(Customer $"customer") {
 }
 */
 
-Route::get('customers/{customer}', 'CustomersController@show');
+Route::get('customers/{customer}', 'CustomersController@show')->middleware('can:view, customer');
+//Route::get('customers/{customer}', 'CustomersController@show');
+
 Route::get('customers/{customer}/edit', 'CustomersController@edit');
 Route::patch('customers/{customer}', 'CustomersController@update')->name('customers.update');
 
@@ -260,3 +262,38 @@ php artisan make:seeder CompaniesTableSeeder
 php artisan storage:link - Create a symbolic link from "public/storage" to "storage/app/public"
 After Git old commit
 */
+/* 
+Pagination -
+        $customers = Customer::with('company')->paginate(5);
+index.blade.php - To show the numbering - links()
+
+        {{ $customers->links() }}        
+
+*/ 
+/* 
+Policies - Authorize certain users to do certain things in our application 
+Admin User
+Regular User 
+
+Policies attach to Models - They are protecting resources of application. They are attached to some table of the database.
+
+php artisan make:policy CustomerPolicy -m Customer
+The file has each of RESTful methods
+
+    public function create(User $user)
+    {
+        //
+        return in_array($user->email, [
+            'admin@admin.com',
+        ]);
+
+In store() {
+        $this->authorize('create', Customer::class);    
+}
+Will return forbidden if not authorized
+
+Policy at Middleware 
+Route::get('customers/{customer}', 'CustomersController@show')->middleware('can:view, customer');
+
+*/
+

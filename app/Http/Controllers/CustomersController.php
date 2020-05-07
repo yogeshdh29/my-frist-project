@@ -20,7 +20,6 @@ class CustomersController extends Controller
     {
 //        $customers = Customer::all();
 //        $customers = Customer::with('company')->get();
-
         $customers = Customer::with('company')->paginate(5);
         
         return view('customers.index', compact('customers'));
@@ -71,6 +70,7 @@ class CustomersController extends Controller
 
     public function store()
     {
+        $this->authorize('create', Customer::class);
 
         $customer = Customer::create($this->validateRequest());
 
@@ -92,6 +92,7 @@ class CustomersController extends Controller
 
     public function destroy(Customer $customer)
     {
+        $this->authorize('delete', $customer);
 
         $customer->delete();
 
