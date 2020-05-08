@@ -34,6 +34,8 @@ return array(
     'App\\Listeners\\WelcomeNewCustomerListener' => $baseDir . '/app/Listeners/WelcomeNewCustomerListener.php',
     'App\\Mail\\ContactFormMail' => $baseDir . '/app/Mail/ContactFormMail.php',
     'App\\Mail\\WelcomeNewUserMail' => $baseDir . '/app/Mail/WelcomeNewUserMail.php',
+    'App\\Phone' => $baseDir . '/app/Phone.php',
+    'App\\Policies\\CustomerPolicy' => $baseDir . '/app/Policies/CustomerPolicy.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',
     'App\\Providers\\BroadcastServiceProvider' => $baseDir . '/app/Providers/BroadcastServiceProvider.php',

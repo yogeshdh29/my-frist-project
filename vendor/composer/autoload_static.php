@@ -415,6 +415,8 @@ class ComposerStaticInitea0a657a316b9bc5fa0927bfe6bcfa86
         'App\\Listeners\\WelcomeNewCustomerListener' => __DIR__ . '/../..' . '/app/Listeners/WelcomeNewCustomerListener.php',
         'App\\Mail\\ContactFormMail' => __DIR__ . '/../..' . '/app/Mail/ContactFormMail.php',
         'App\\Mail\\WelcomeNewUserMail' => __DIR__ . '/../..' . '/app/Mail/WelcomeNewUserMail.php',
+        'App\\Phone' => __DIR__ . '/../..' . '/app/Phone.php',
+        'App\\Policies\\CustomerPolicy' => __DIR__ . '/../..' . '/app/Policies/CustomerPolicy.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
