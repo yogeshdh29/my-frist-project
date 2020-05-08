@@ -11,9 +11,9 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 //Route::view('contact', 'contact');
 Route::view('about', 'about')->middleware('test');
 /* 
@@ -299,15 +299,4 @@ In view to restrict the links -
 Policy at Middleware 
 Route::get('customers/{customer}', 'CustomersController@show')->middleware('can:view, customer');
 */
-/* 
-Eloquent Relationship - One to one 
-User has one phone
-*/
-Route::get('/', function () {
-    $user = factory(\App\User::class)->create();
-
-    $user->phone()->create([
-        'phone' => '222-333-3456',
-    ]);
-});
 
