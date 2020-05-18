@@ -22,6 +22,9 @@
                       <li class="nav-item"> 
                         <a class="nav-link" href="/customers">Customers</a>
                       </li>
+                      <li class="nav-item"> 
+                        <a class="nav-link" href="/voices">Voice Users</a>
+                      </li>                      
                     </ul>
 
                     <!-- Right Side Of Navbar -->

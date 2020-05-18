@@ -27,6 +27,15 @@ Route::get('customers', 'CustomersController@index');
 Route::get('customers/create', 'CustomersController@create');
 Route::post('customers', 'CustomersController@store');
 
+Route::get('voices', 'VoicesController@index');
+Route::get('voices/create', 'VoicesController@create');
+Route::post('voices', 'VoicesController@store');
+Route::get('voices/{voice}', 'VoicesController@show');
+Route::get('voices/{voice}/edit', 'VoicesController@edit');
+Route::patch('voices/{voice}', 'VoicesController@update')->name('voices.update');
+Route::delete('voice/{voice}', 'VoicesController@destroy');
+
+
 /*
 Conditions for Route Model Binding: 
 
