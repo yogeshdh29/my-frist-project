@@ -23,9 +23,9 @@ Model -
 php artisan make:model Customers -m 
 Create a migrate for that model to hold the data as well.
 */
-// Route::get('customers', 'CustomersController@index');
-// Route::get('customers/create', 'CustomersController@create');
-// Route::post('customers', 'CustomersController@store');
+Route::get('customers', 'CustomersController@index');
+Route::get('customers/create', 'CustomersController@create');
+Route::post('customers', 'CustomersController@store');
 
 /*
 Conditions for Route Model Binding: 
