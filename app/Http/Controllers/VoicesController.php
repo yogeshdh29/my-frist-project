@@ -27,18 +27,19 @@ class VoicesController extends Controller
     {
 
         return tap(request()->validate([
-            'user_id' => 'required',
-            'name' => 'required',
-            'mobile' => 'required',
+            'user_id' => 'required|numeric',
+            'name' => 'required|max:255',
+            'country_id' => 'required|numeric',
+            'mobile' => 'required|numeric',
             'email' => 'required|email',
             'dob' => 'required',
-            'image' => 'required|image'
+            'image' => 'required|image|mimes:jpeg,jpg,png'
 
         ]), function () {
 
             if (request()->hasFile('image')) {
                 request()->validate([
-                    'image' => 'file|image|max:5000',
+                    'image' => 'file|image|mimes:jpeg,jpg,png|max:5000',
                 ]);
             }
         });

@@ -51,4 +51,6 @@
 		{{ $customers->links() }}
 	</div>
 </div>
+
+
 @endsection('content')

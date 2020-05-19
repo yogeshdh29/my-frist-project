@@ -16,30 +16,40 @@
 	</div>
 </div>
 
-<div class="row">
-	<div class="col-2"><label>ID</label></div>
-	<div class="col-2"><label>User ID</label></div>
-	<div class="col-2"><label>Name</label></div>
-	<div class="col-2"><label>Mobile</label></div>
-	<div class="col-2"><label>Email</label></div>
-	<div class="col-2"><label>DOB</label></div>
-</div>
-
+<table id="example" class="display nowrap" style="width:100%">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>User ID</th>
+                <th>Name</th>
+                <th>Mobile</th>
+                <th>Email</th>
+                <th>DOB</th>
+            </tr>
+        </thead>
+        <tbody>
 @foreach($voices as $voice)
-<div class="row">
-	<div class="col-2">{{ $voice->id }}</div>
-	<div class="col-2">{{ $voice->user_id }}</div>
-
-	<div class="col-2">
-		<a href="/voices/{{ $voice->id }}">
-			{{ $voice->name }}
-		</a>
-	</div>		
-	<div class="col-2">{{ $voice->mobile }}</div>
-	<div class="col-2" align="center">{{ $voice->email }}</div>
-	<div class="col-2">{{ $voice->dob}}</div>
-</div>
+            <tr>
+                <td>{{ $voice->id }}</td>
+                <td>{{ $voice->user_id }}</td>
+                <td><a href="/voices/{{ $voice->id }}">{{ $voice->name }}</a></td>
+                <td>{{ "+".$voice->country_id.$voice->mobile }}</td>
+                <td>{{ $voice->email }}</td>
+                <td>{{ $voice->dob}}</td>
+            </tr>
+        </tbody>
 @endforeach
 
+        <tfoot>
+            <tr>
+                <th>ID</th>
+                <th>User ID</th>
+                <th>Name</th>
+                <th>Mobile</th>
+                <th>Email</th>
+                <th>DOB</th>
+            </tr>
+        </tfoot>
+    </table>
 
 @endsection('content')

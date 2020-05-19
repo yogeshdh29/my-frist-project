@@ -17,6 +17,7 @@ class CreateVoicesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedInteger('user_id');
             $table->string('name');
+            $table->string('country_id');
             $table->string('mobile');
             $table->string('email')->unique();
             $table->string('dob');
